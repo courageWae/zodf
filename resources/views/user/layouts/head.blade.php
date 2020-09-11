@@ -1,10 +1,10 @@
 <head>
     <meta charset="utf-8">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<meta name="description" content="ZODF - Project Website">
-	<meta name="keywords" content="zongo, development, fund, website, helping, muslim, mosque, university">
+	<meta name="description" content="Zongo Development Fund">
+	<meta name="keywords" content="zongo development fund project,zongo development fund gallery,zongo development fund news,zongo development fund projects,zongos, development, fund, zongo development fund website, helping, muslim, mosque, university, zongo development fund">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>ZODF - Project Website</title> 
+	<title>Zongo Development Fund</title> 
 	<link rel="shortcut icon" href="{{ asset('user/images/favicon.ico') }}" type="image/x-icon">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{ asset('user/css/assets/bootstrap.min.css') }}">

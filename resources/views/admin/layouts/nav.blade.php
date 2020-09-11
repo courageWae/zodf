@@ -11,51 +11,51 @@
 
   <!-- SEARCH FORM -->
   
-  {{-- @php
+  @php
   use \App\Model\User\Contact;
-      $newmessages = Contact::all();
+      $newmessages = Contact::where('read','new')->get();
       $countmessages = count($newmessages);
       
-  @endphp --}}
+  @endphp
   <!-- Right navbar links -->
   <ul class="navbar-nav ml-auto">
     <!-- Messages Dropdown Menu -->
     <li class="nav-item dropdown">
       <a class="nav-link" data-toggle="dropdown" href="#"> 
         <i class="far fa-comments"></i>
-      {{-- <span class="badge badge-danger navbar-badge">{{ $countmessages }}</span> --}}
+      <span class="badge badge-danger navbar-badge">{{ $countmessages }}</span>
       </a>
       <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
         
-        {{-- @foreach ($newmessages as $newmessage)
+        @foreach ($newmessages as $newmessage)
         @php
             $messagelimit = $newmessage->message
-        @endphp --}}
+        @endphp
         <a href="" class="dropdown-item">
           <!-- Message Start -->
           <div class="media">
             <div class="media-body">
               <h3 class="dropdown-item-title">
-                {{-- {{ $newmessage->name }} --}}
+                {{ $newmessage->name }}
                 <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
               </h3>
-              {{-- <p class="text-sm"><strong>{{ $newmessage->topic }}</strong></p> --}}
-              {{-- <p class="text-sm">{{ ($messagelimit, 20) }}</p> --}}
-              {{-- <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> {{ $newmessage->created_at->diffForHumans() }}</p> --}}
+              <p class="text-sm"><strong>{{ $newmessage->subject }}</strong></p>
+              <p class="text-sm">{{ $messagelimit }}</p>
+              <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> {{ $newmessage->created_at->diffForHumans() }}</p>
             </div>
           </div>
           <!-- Message End -->
         </a>
         <div class="dropdown-divider"></div>
-        {{-- @endforeach --}}
-        <a href="" class="dropdown-item dropdown-footer">See All Messages</a>
+        @endforeach
+        <a href="{{ route('viewcontact') }}" class="dropdown-item dropdown-footer">See All Messages</a>
       </div>
     </li>
     
-    <li class="nav-item">
+    {{-- <li class="nav-item">
       <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#">
         <i class="fas fa-th-large"></i>
       </a>
-    </li>
+    </li> --}}
   </ul>
 </nav>

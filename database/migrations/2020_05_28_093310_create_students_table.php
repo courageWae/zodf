@@ -16,15 +16,29 @@ class CreateStudentsTable extends Migration
         Schema::create('students', function (Blueprint $table) {
             $table->id();
             $table->string('firstname');
-            $table->string('lastname');
-            $table->string('email');
-            $table->string('phone');
-            $table->string('dob');
-            $table->string('gender');
-            $table->string('address');
-            $table->string('city');
-            $table->string('country');
-            $table->integer('project_id');
+            $table->string('surname')->nullable();
+            $table->string('othername')->nullable();
+            $table->string('email')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('gender')->nullable();
+            $table->integer('age')->nullable();
+            $table->string('region')->nullable();
+            $table->string('religion')->nullable();
+            $table->string('zongo')->nullable();
+            $table->string('district')->nullable();
+            $table->string('disability')->nullable();
+            $table->string('trained')->nullable();
+            $table->string('othervocation')->nullable();
+            $table->string('education')->nullable();
+            $table->string('employment')->nullable();
+            $table->string('address')->nullable();
+            $table->string('country')->nullable();
+            $table->string('word')->nullable();
+            $table->string('excel')->nullable();
+            $table->string('interest')->nullable();
+            $table->string('status')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->integer('project_id')->nullable();
             $table->timestamps();
         });
     }

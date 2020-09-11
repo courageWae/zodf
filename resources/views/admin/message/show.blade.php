@@ -1,4 +1,4 @@
-@extends('broker.app')
+@extends('admin.app')
 
 @section('main')
 
@@ -35,7 +35,6 @@
           <th>#</th>
           <th>Name</th>
           <th>Email</th>
-          <th>Phone</th>
           <th>Subject</th>
           <th>Message</th>
           <th>Date</th>
@@ -49,11 +48,10 @@
               <td>{{$message->id}}</td>
              <td>{{$message->name}}</td>
              <td>{{$message->email}}</td>
-             <td>{{$message->phone}}</td>
-             <td>{{$message->topic}}</td>
+             <td>{{$message->subject}}</td>
              <td>{{$message->message}}</td>
              <td>{{$message->created_at->diffForHumans()}}</td>
-             <td><a href="{{ route('contact.show',$message->id) }}"><span class="fas fa-eye"></span></a></td>
+             <td><a href="{{ route('contactdetail',$message->id) }}"><span class="fas fa-eye"></span></a></td>
             </tr>
             @endforeach
         
@@ -63,7 +61,6 @@
               <th>#</th>
               <th>Name</th>
               <th>Email</th>
-              <th>Phone</th>
               <th>Subject</th>
               <th>Message</th>
               <th>Date</th>

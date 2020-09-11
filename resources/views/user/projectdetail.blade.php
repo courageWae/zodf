@@ -1,32 +1,11 @@
-<!doctype html>
-<html class="no-js" lang="zxx">
+@extends('user.layouts.app')
 
-@include('user.layouts.head')
-<body class="single-courses_v">
-<!-- Preloader -->
-<div id="preloader">
-	<div id="status">&nbsp;</div>
-</div>
-<header id="header">
-	@include('user.layouts.topnav')
-    <!-- Ends: .header-top -->
+@section('title', 'Project Details')
 
-	<div class="header-body">
-		@include('user.layouts.nav')
-		
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="intro-text ">
-						<h1>Project Details</h1>
-						<p>
-						<span><a href="{{ route('index') }}">Home <i class='fa fa-angle-right'></i></a></span> <span><a href="{{ route('projects') }}"> Projects <i class='fa fa-angle-right'></i></a></span> <span class="b-active">Project Details</span></p>
-					</div>
-				</div>
-			</div><!-- /.row -->
-		</div><!-- /.container -->
-	</div>
-</header>
+@section('page', 'single-courses_v')
+
+
+@section('main')
 	<!--  End header section-->
 
 
@@ -38,7 +17,7 @@
 					<h2>{{ $project->name }}</h2>
 					<div class="review-option">
 						<div class="row">
-							<div class="col-sm-3 col-xm-12 teacher-info border-left review-item-singel">
+							<div class="col-sm-2 col-xm-12 teacher-info border-left review-item-singel">
 								{{-- <img src="user/images/index/teachar-s-01.jpg" alt="" class="img-circle"> --}}
 								<span>Start Date</span>
 								<div class="teacher-name">
@@ -46,21 +25,29 @@
 								</div>
 							</div>
 
-							<div class="col-sm-3 col-xm-12  categories border-left  review-item-singel">
+							<div class="col-sm-2 col-xm-12  categories border-left  review-item-singel">
 								<span>Closing Date</span>
 								<div class="teacher-name">
 									<span>{{ $project->closingdate }}</span>
 								</div>
 							</div>
 
-							<div class="col-sm-3 col-xm-12  categories border-left  review-item-singel">
+							<div class="col-sm-2 col-xm-12  categories border-left  review-item-singel">
 								<span>Location</span>
 								<span>{{ $project->location }}</span>
 							</div>
 
 							<div class="col-sm-3 col-xm-12 students_105 border-left  review-item-singel">
-								<span>Students</span>
-								<span>105</span>
+								<span>Registered Students</span>
+								<span>{{ $countstudents }}</span>
+							</div>
+							<div class="price-text col-sm-3 col-xm-12 students_105 border-left  review-item-singel">
+								<span>Register For Course</span>
+								<span class="price-text">
+									<div class="price-btn-box">
+										<a href="{{ route('projectregister', $project->id) }}" class="btn btn-primary price-btn">Register For Project</a>
+									</div>
+								</span>
 							</div>
 						</div>
 					</div>
@@ -91,7 +78,7 @@
 								</div> --}}
 							</div>
 						</div>
-						<div class="count-list">
+						{{-- <div class="count-list">
 							<h3>List Project Documents</h3>
 							<ol class="list-unstyled">
 								@foreach ($materials as $material)
@@ -99,10 +86,14 @@
 								@endforeach
 								
 							</ol>
-						</div>
+						</div> --}}
 					</div>
 
-					<div class="curriculum-text-box">
+					<div class="price-btn-box">
+						<a href="{{ route('projectregister', $project->id) }}" class="btn btn-primary price-btn">Register For Project</a>
+					</div>
+
+					{{-- <div class="curriculum-text-box">
 						<h2>Curriculum: </h2>
 						<div class="curriculum-section">
 							<div class="panel-group" id="accordion">
@@ -145,129 +136,7 @@
 								
 							</div> <!-- .curriculum-section-text END -->
 						</div>
-					</div>
-
-					<div class="comments">
-						<div class="row">
-							<div class="col-sm-12">
-							<h3>Comments</h3>
-								<div class="row">
-									<div class="col-sm-12 comment-single-item">
-										<div class="col-sm-2 img-box">
-											<img src="{{ asset('user/images/index/stu-parent-01.jpg') }}" alt="" class="img-circle">
-										</div>
-										<div class="col-sm-10 comment-left-bar">
-											<div class="comment-text">
-												<ul class="list-unstyled">
-													<li class="name">James Smith
-														<div class="comment-author">
-															<ul class="list-unstyled">
-																<li>Rated:</li>
-																<li><i class="fa fa-star"></i></li>
-																<li><i class="fa fa-star"></i></li>
-																<li><i class="fa fa-star"></i></li>
-																<li><i class="fa fa-star"></i></li>
-																<li><i class="fa fa-star"></i></li>
-															</ul>
-														</div>
-													</li>
-													<li class="comment-date">20 July 2019 AT 10.45 AM</li>
-												</ul>
-												<p>“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in finibus neque. Vivamus in ipsum quis elit vehicula tempus vitae quis lacus. Vestibulum interdum diam non mi cursus venenatis. Morbi lacinia libero et elementum vulputate.</p>
-											</div>
-										</div>
-									</div>
-									<div class="col-sm-12 comment-single-item">
-										<div class="col-sm-2 img-box">
-											<img src="{{ asset('user/images/index/stu-parent-02.jpg') }}" alt="" class="img-circle">
-										</div>
-										<div class="col-sm-10 comment-left-bar">
-											<div class="comment-text">
-												<ul class="list-unstyled">
-													<li class="name">James Smith
-														<div class="comment-author">
-															<ul class="list-unstyled">
-																<li>Rated:</li>
-																<li><i class="fa fa-star"></i></li>
-																<li><i class="fa fa-star"></i></li>
-																<li><i class="fa fa-star"></i></li>
-																<li><i class="fa fa-star"></i></li>
-																<li><i class="fa fa-star"></i></li>
-															</ul>
-														</div>
-													</li>
-													<li class="comment-date">20 July 2019 AT 10.45 AM</li>
-												</ul>
-												<p>“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in finibus neque. Vivamus in ipsum quis elit vehicula tempus vitae quis lacus. Vestibulum interdum diam non mi cursus venenatis. Morbi lacinia libero et elementum vulputate.</p>
-											</div>
-										</div>
-									</div>
-									<div class="col-sm-12 comment-single-item">
-										<div class="col-sm-2 img-box">
-											<img src="{{ asset('user/images/index/stu-parent-03.jpg') }}" alt="" class="img-circle">
-										</div>
-										<div class="col-sm-10 comment-left-bar">
-											<div class="comment-text">
-												<ul class="list-unstyled">
-													<li class="name">James Smith
-														<div class="comment-author">
-															<ul class="list-unstyled">
-																<li>Rated:</li>
-																<li><i class="fa fa-star"></i></li>
-																<li><i class="fa fa-star"></i></li>
-																<li><i class="fa fa-star"></i></li>
-																<li><i class="fa fa-star"></i></li>
-																<li><i class="fa fa-star"></i></li>
-															</ul>
-														</div>
-													</li>
-													<li class="comment-date">20 July 2019 AT 10.45 AM</li>
-												</ul>
-												<p>“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in finibus neque. Vivamus in ipsum quis elit vehicula tempus vitae quis lacus. Vestibulum interdum diam non mi cursus venenatis. Morbi lacinia libero et elementum vulputate.</p>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="leave_a_comment">
-						<div class="row">
-							<div class="col-sm-12">
-							<h3>Leave A Comment</h3>
-								<div class="row">
-									<div class="col-sm-12">
-							            <form>
-							                <div class="form-group">
-							                    <div class="row">
-							                        <div class="col-sm-4">
-							          					<label class="input-label">name</label>
-							                            <input type="text" placeholder="Enter your name" id="name" name="name" required>
-							                        </div>
-							                        <div class="col-sm-4">
-							                        	<label class="input-label">E-mail</label>
-							                            <input type="email" placeholder="Enter your E-mail" name="email" required>
-							                        </div>
-							                        <div class="col-sm-4">
-							                       	 <label class="input-label">Website</label>
-							                            <input type="text" placeholder="https://" name="web" required>
-							                        </div>
-							                        <div class="col-sm-12">
-							                        	<label class="input-label">Message</label>
-							                            <textarea placeholder="Type your comment"  name="message" required></textarea>
-							                        </div>
-							                        <div class="col-sm-12">
-							                            <button type="submit">Send Message</button>
-							                        </div>
-							                    </div>
-							                </div>
-							            </form>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+					</div> --}}
 
 				</div>
 			</div>
@@ -281,9 +150,15 @@
 									<h3>Courses Price</h3>
 								</div>
 								<div class="price-text">
-									<span class="dolar-sign"></span><span>{{ $project->price }}</span>
-									{{-- <p>One Time Payment</p> --}}
-									<hr>
+									@if ($project->price == 'Free')
+										<span class="dolar-sign"></span><span>{{ $project->price }}</span>
+										<hr>
+									@else
+										<span class="dolar-sign"></span><span>GH₵ {{ $project->price }}.00</span>
+										<p>One Time Payment</p>
+										<hr>
+									@endif
+									
 									<div class="price-btn-box">
 										<a href="{{ route('projectregister', $project->id) }}" class="price-btn">Register For Project</a>
 									</div>
@@ -318,20 +193,20 @@
 						<div class="col-sm-12">
 							<div class="share-socila-link">
 								<div class="social-hading">
-									<h3>Share this course</h3>
+									<h3>Share this Project</h3>
 								</div>
 								<div class="social-icon">
 									<div class="row">
 										<div class="col-sm-12">
 											<ul class="list-unstyled">
-												<li><a href="#" class="facebook"><i class="fa fa-facebook"></i></a></li>
-												<li><a href="#" class="google"><i class="fa fa-google-plus"></i></a></li>
-												<li><a href="#" class="instagram"><i class="fa fa-instagram"></i></a></li>
-												<li><a href="#" class="twitter"><i class="fa fa-twitter"></i></a></li>
-												<li><a href="#" class="skype"><i class="fa fa-skype"></i></a></li>
-												<li><a href="#" class="youtube"><i class="fa fa-youtube"></i></a></li>
-												<li><a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a></li>
-												<li><a href="#" class="pinterest"><i class="fa fa-pinterest-p"></i></a></li>
+												<li><a href="http://www.facebook.com/sharer.php?u={{ url('projectdetail', $project->id) }}" target="_blank" class="facebook"><i class="fa fa-facebook"></i></a></li>
+												<li><a href="https://plus.google.com/share?url={{ url('projectdetail', $project->id) }}" target="_blank" class="google"><i class="fa fa-google-plus"></i></a></li>
+												{{-- <li><a href="#" class="instagram"><i class="fa fa-instagram"></i></a></li> --}}
+												<li><a href="https://twitter.com/share?url={{ url('projectdetail', $project->id) }}&amp;text={{ $project->name }}&amp;hashtags={{ $project->name }}" target="_blank" class="twitter"><i class="fa fa-twitter"></i></a></li>
+												<li><a href="mailto:?subject={{ $project->name }}&body={{ url('projectdetail', $project->id) }}" onClick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;" target="_blank" class="skype"><i class="fa fa-envelope"></i></a></li>
+												{{-- <li><a href="#" class="youtube"><i class="fa fa-youtube"></i></a></li> --}}
+												<li><a href="http://www.linkedin.com/shareArticle?mini=true&amp;url={{ url('projectdetail', $project->id) }}" target="_blank" class="linkedin"><i class="fa fa-linkedin"></i></a></li>
+												<li><a href="whatsapp://send?text={{ url('projectdetail', $project->id) }}" onClick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;" target="_blank" style="background-color: green" class="pinterest"><i class="fa fa-whatsapp"></i></a></li>
 											</ul>
 										</div>
 									</div>
@@ -344,56 +219,22 @@
 						<div class="col-sm-12">
 							<div class="latest-courses">
 								<div class="latest-hading">
-									<h3>Latest courses</h3>
+									<h3>Latest Projects</h3>
 								</div>
 								<div class="latest-courses-text">
+									@foreach ($latestcourses as $latestcourse)
 									<div class="latest-single">
 										<div class="row">
 										    <div class="col-sm-5 course-image">
-										        <img src="{{  asset('user/images/Single_cources/l-courses-01.jpg') }}" alt="">
+										        <img src="{{ asset('images/'.$latestcourse->image) }}" alt="">
 										    </div>
 										    <div class=" col-sm-7 course-prefix">
-										        <h3><a href="#">web Design Courses</a></h3>
-										        <div class="latest-btn"><a href="#">$100</a></div>
+										        <h3><a href="{{ route('projectdetail', $latestcourse->id) }}">{{ $latestcourse->name }}</a></h3>
+										        <div class="latest-btn"><a href="{{ route('projectdetail', $latestcourse->id) }}">{{ $latestcourse->price }}</a></div>
 										    </div>
 										</div>
 									</div>
-
-									<div class="latest-single">
-										<div class="row">
-										    <div class="col-sm-5 course-image">
-										        <img src="{{ asset('user/images/Single_cources/l-courses-02.jpg') }}" alt="">
-										    </div>
-										    <div class=" col-sm-7 course-prefix">
-										        <h3><a href="#">Wordpress Courses</a></h3>
-										        <div class="latest-btn"><a href="#">$100</a></div>
-										    </div>
-										</div>
-									</div>
-
-									<div class="latest-single">
-										<div class="row">
-										    <div class="col-sm-5 course-image">
-										        <img src="{{ asset('user/images/Single_cources/l-courses-03.jpg') }}" alt="">
-										    </div>
-										    <div class=" col-sm-7 course-prefix">
-										        <h3><a href="#">Javascript Courses</a></h3>
-										        <div class="latest-btn"><a href="#">$100</a></div>
-										    </div>
-										</div>
-									</div>
-
-									<div class="latest-single">
-										<div class="row">
-										    <div class="col-sm-5 course-image">
-										        <img src="{{ asset('user/images/Single_cources/l-courses-04.jpg') }}" alt="">
-										    </div>
-										    <div class=" col-sm-7 course-prefix">
-										        <h3><a href="#">Microsoft Word Excel</a></h3>
-										        <div class="latest-btn"><a href="#">$100</a></div>
-										    </div>
-										</div>
-									</div>
+									@endforeach
 								</div>
 							</div>
 						</div>
@@ -407,12 +248,4 @@
 <!-- ./ End Courses Area section -->
 
 <!-- Footer Area section -->
-@include('user.layouts.footer')
-<!-- ./ End Footer Area -->
-    <!-- ============================
-    JavaScript Files
-    ============================= -->
-    @include('user.layouts.script')
-</body>
-
-</html>
+@endsection

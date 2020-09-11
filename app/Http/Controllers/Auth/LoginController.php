@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -21,16 +23,63 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
+    public function login(Request $request)
+    {
+        $student=$request->session()->get('student');
+        $this->validateLogin($request);
+
+        // If the class is using the ThrottlesLogins trait, we can automatically throttle
+        // the login attempts for this application. We'll key this by the username and
+        // the IP address of the client making these requests into this application.
+        if (method_exists($this, 'hasTooManyLoginAttempts') &&
+            $this->hasTooManyLoginAttempts($request)) {
+            $this->fireLockoutEvent($request);
+
+            return $this->sendLockoutResponse($request);
+        }
+
+        if ($this->attemptLogin($request)) {
+            if($student){
+                session(['student'=>$student]);
+                return $this->sendLoginResponse($request, $student);
+            }
+            
+        }
+
+        // If the login attempt was unsuccessful we will increment the number of attempts
+        // to login and redirect the user back to the login form. Of course, when this
+        // user surpasses their maximum number of attempts they will get locked out.
+        $this->incrementLoginAttempts($request);
+
+        return $this->sendFailedLoginResponse($request);
+    }
+
     /**
      * Where to redirect users after login.
      *
      * @var string
      */
-    // protected $redirectTo = RouteServiceProvider::HOME;
+    protected function redirectTo(){
+        
+        if (Auth::user()->role_id==1) 
+        {
+            // dd(Auth::user()->role_id);
+            return route('admin.dashboard');
+        }
+        elseif (Auth::user()->role_id==2) 
+        {
+            // dd(Auth::user()->role_id);
+            return route('home');
+        }
+    }
 
-    protected function redirectTo()
+    public function logout(Request $request)
     {
-        return route('admin.dashboard');
+        $this->guard()->logout();
+
+        $request->session()->invalidate();
+
+        return $this->loggedOut($request) ?: redirect(route('login')); //redirect to login
     }
 
     /**

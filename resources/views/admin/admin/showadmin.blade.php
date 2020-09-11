@@ -1,4 +1,4 @@
-@extends('broker.app')
+@extends('admin.app')
 
 @section('main')
 
@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Insurer</h1>
+                    <h1 class="m-0 text-dark">Admin</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">All Insurer</li>
+                        <li class="breadcrumb-item active">All Admins</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -26,7 +26,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">All Insurer</h3>
+                        <h3 class="card-title">All Admins</h3>
                         <span><a class="btn btn-primary" href="{{ route('registration') }}">Add New Admin</a></span>
                     </div>
                     <div class="card-body">
@@ -38,6 +38,8 @@
                                     <th>Email</th>
                                     <th>Phone</th>
                                     <th>Created date</th>
+                                    {{-- <th>View</th> --}}
+                                    <th>Delete</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -48,7 +50,25 @@
                                     <td>{{ $insurer->email }}</td>
                                     <td>{{ $insurer->phone }}</td>
                                     <td>{{ $insurer->created_at->diffForHumans() }}</td>
-                                    {{-- <td><a href=""><span class="fas fa-eye"></span></a></td> --}}
+                                    {{-- <td><a href="{{ route('showadmin',$insurer->id) }}"><span class="fas fa-eye"></span></a></td> --}}
+                                    <td>
+                                        <form method="POST" id="delete-form-{{ $insurer->id }}"
+                                            action="{{ route('destroyadmin',$insurer->id) }}" style="display:none">
+                                            {{ csrf_field() }}
+                                            {{ method_field('DELETE') }}
+                                        </form>
+                                        <a href="{{ route('destroyadmin',$insurer->id) }}" onclick="
+                                        if(confirm('Are you sure you want to delete this?'))
+                                        {
+                                            event.preventDefault();
+                                            document.getElementById('delete-form-{{ $insurer->id }}').submit();
+                                        }else
+                                        {
+                                            event.preventDefault();
+                                        }">
+                                        <span class="fas fa-trash-alt"></span>
+                                        </a>
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -59,6 +79,8 @@
                                     <th>Email</th>
                                     <th>Phone</th>
                                     <th>Created date</th>
+                                    {{-- <th>View</th> --}}
+                                    <th>Delete</th>
                                 </tr>
                             </tfoot>
                         </table>

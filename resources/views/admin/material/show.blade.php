@@ -89,14 +89,14 @@
                                 <tr>
                                     <td>{{$role->id}}</td>
                                 <td>{{$role->name}}</td>
-                                <td><a href=""><span class="fas fa-edit"></span></a></td>
+                                <td><a href="{{ route('showmaterial',$role->id) }}"><span class="fas fa-edit"></span></a></td>
                                 <td>
-                                    <form method="POST" id="delete-form-{{ $role->id }}" action="" style="display:none">
+                                    <form method="POST" id="delete-form-{{ $role->id }}" action="{{ route('destroymaterial',$role->id) }}" style="display:none">
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
                                     </form>
 
-                                    <a href="" onclick="
+                                    <a href="{{ route('destroymaterial',$role->id) }}" onclick="
                       if(confirm('Are you sure you want to delete this?'))
                       {
                           event.preventDefault();

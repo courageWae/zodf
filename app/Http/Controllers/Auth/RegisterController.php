@@ -8,6 +8,9 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
 
 class RegisterController extends Controller
 {
@@ -25,14 +28,50 @@ class RegisterController extends Controller
     use RegistersUsers;
 
     /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function register(Request $request)
+    {
+        $student=$request->session()->get('student');
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        // if (auth()->user()->role_id==2) {
+            // Mail::to($user->email)->send(new WelcomeCustomersMail($user));
+        // }
+        
+
+        $this->guard()->login($user);
+
+        if($student){
+            session(['student'=>$student]);
+        }
+        return $this->registered($request, $user)?: redirect($this->redirectPath());
+    }
+
+    /**
      * Where to redirect users after registration.
      *
      * @var string
      */
     // protected $redirectTo = RouteServiceProvider::HOME;
-    protected function redirectTo()
-    {
-        return route('admin.dashboard');
+
+    /**
+     * Where to redirect users after login.
+     *
+     * @var string
+     */
+    protected function redirectTo(){
+        // $motor_session=$request->session()->get('motor');
+        
+        if (auth()->user()->role_id==2) 
+        {
+            return route('home');
+        }
     }
 
     /**
@@ -57,6 +96,8 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'role_id' => ['required'],
+            'phone' => ['required'],
         ]);
     }
 
@@ -72,6 +113,8 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'role_id' => $data['role_id'],
+            'phone' => $data['phone'],
         ]);
     }
 }

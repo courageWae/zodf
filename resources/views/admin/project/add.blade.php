@@ -35,123 +35,34 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="">Project Name</label>
-                                        <input type="text" class="form-control" name="name"
-                                            placeholder="Project Name">
+                                        <input type="text" class="form-control" name="name" placeholder="Project Name">
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <label for="">Project Price</label>
-                                        <input type="text" class="form-control" name="price"
-                                            placeholder="Enter Project Price or Free">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-4">
-                                    <div class="form-group">
                                         <label for="">Certificate</label>
-                                        <select class="form-control" name="certificate" id="">
-                                            <option value="yes">Yes</option>
-                                            <option value="no">No</option>
+                                        <select class="form-control" name="category" id="">
+                                            <option value="Infrastructure Enhancement">Infrastructure Enhancement
+                                            </option>
+                                            <option value="Economic Empowerment">Economic Empowerment </option>
+                                            <option value="Social Development">Social Development </option>
+                                            <option value="Cultural Promotion">Cultural Promotion </option>
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-4">
-                                    <div class="form-group">
-                                        <label for="">Project Duration (Hours)</label>
-                                        <input type="number" class="form-control" name="duration"
-                                            placeholder="Enter Project Duration in hours">
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="form-group">
-                                        <label for="">Number Of Project Materials</label>
-                                        <input type="number" class="form-control" name="materials"
-                                            placeholder="Number Of Project Materials">
-                                    </div>
-                                </div>
                             </div>
                             <div class="row">
-                                <div class="col-6">
-                                  <div class="form-group">
-                                    <label for="">Number Of Lesson</label>
-                                    <input type="number" class="form-control" name="lesson">
-                                </div>
-                                </div>
-                                <div class="col-6">
+                                <div class="col-12">
                                     <div class="form-group">
-                                        <label for="">Number Of Days</label>
-                                        <input type="text" class="form-control" name="days"
-                                            placeholder="Enter Course Name">
+                                        <label for="">Image</label>
+                                        <input type="file" name="image" class="form-control">
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                              <div class="col-6">
-                                  <div class="form-group">
-                                      <label for="">Prequisite</label>
-                                      <input type="text" class="form-control" name="prequisite"
-                                          placeholder="Enter Prequisite">
-                                  </div>
-                              </div>
-                              <div class="col-6">
-                                  <div class="form-group">
-                                      <label for="">Languages</label>
-                                      <input type="text" class="form-control" name="language"
-                                          placeholder="eg: English, Twi etc">
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-4">
-                                <div class="form-group">
-                                    <label for="">Skill</label>
-                                    <input type="text" class="form-control" name="skill"
-                                        placeholder="Enter Skill">
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="form-group">
-                                    <label for="">Assessment</label>
-                                    <input type="text" class="form-control" name="assessment"
-                                        placeholder="Assessment">
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="form-group">
-                                    <label for="">Location</label>
-                                    <input type="text" class="form-control" name="location"
-                                        placeholder="Location Of Project">
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="row">
-                            <div class="col-4">
-                                <div class="form-group">
-                                    <label for="">Image</label>
-                                    <input type="file" name="image" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="form-group">
-                                    <label for="">Project Start Date</label>
-                                    <input type="date" class="form-control" name="startdate"
-                                        >
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="form-group">
-                                    <label for="">Project End Date</label>
-                                    <input type="date" class="form-control" name="closingdate"
-                                        >
-                                </div>
-                            </div>
-                        </div>
                             <div class="form-group">
                                 <label for="">Course Description</label>
-                                <textarea name="description" class="form-control" id="" cols="30" rows="10"></textarea>
+                                <textarea name="description" class="textarea" class="form-control" id="" cols="30"
+                                    rows="10"></textarea>
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-success">Submit</button>
@@ -163,9 +74,9 @@
             <!-- /.card -->
         </div>
         <!-- /.col -->
-</div>
+        </div>
 <!-- /.row -->
-</section>
+    </section>
 <!-- /.content -->
 
 

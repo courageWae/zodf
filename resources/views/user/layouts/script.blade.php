@@ -34,3 +34,18 @@
 	<script type="text/javascript" src="{{ asset('user/js/assets/revolution/revolution.js') }}"></script>
 	<!-- Custom JS -->
 	<script src="{{ asset('user/js/custom.js') }}"></script>
+
+	<script>
+		$(function () {
+		  $("#example1").DataTable();
+		  $('#example2').DataTable({
+			"paging": true, 
+			"lengthChange": false,
+			"searching": false,
+			"ordering": true,
+			"info": true,
+			"autoWidth": false,
+		  });
+		});
+	  </script>
+	   

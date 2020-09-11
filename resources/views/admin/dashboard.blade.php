@@ -40,14 +40,14 @@
           <!-- small box -->
           <div class="small-box bg-info">
             <div class="inner">
-              <h3>3</h3>
+              <h3>{{ $countstudents }}</h3>
 
-              <p>Approved Policies</p>
+              <p>All Registered Students</p>
             </div>
             <div class="icon">
               <i class="ion ion-bag"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="{{ route('registered') }}" class="small-box-footer">View More <i class="fas fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -55,14 +55,14 @@
           <!-- small box -->
           <div class="small-box bg-success">
             <div class="inner">
-              <h3>3</h3>
+              <h3>{{ $countprojects }}</h3>
 
-              <p>Registered Insurers</p>
+              <p>Projects</p>
             </div>
             <div class="icon">
               <i class="ion ion-stats-bars"></i>
             </div>
-            <a href="3" class="small-box-footer">View All Insurers <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="{{ route('allprojects') }}" class="small-box-footer">View More <i class="fas fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -70,14 +70,14 @@
           <!-- small box -->
           <div class="small-box bg-warning">
             <div class="inner">
-            <h3>3</h3>
+            <h3>{{ $countnews }}</h3>
 
-              <p>Registered Clients</p>
+              <p>All Posted News</p>
             </div>
             <div class="icon">
               <i class="ion ion-person-add"></i>
             </div>
-            <a href="#" class="small-box-footer">View All Clients <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="{{ route('showallnews') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -85,14 +85,14 @@
           <!-- small box -->
           <div class="small-box bg-danger">
             <div class="inner">
-              <h3>3</h3>
+              <h3>{{ $countsubscriber }}</h3>
 
-              <p>Quotes</p>
+              <p>Newsletter Subscriber</p>
             </div>
             <div class="icon">
               <i class="ion ion-pie-graph"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="{{ route('showsubscribe') }}" class="small-box-footer">View More <i class="fas fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -101,8 +101,37 @@
       <!-- Main row -->
       <div class="row">
         <!-- Left col -->
-        <section class="col-lg-7 connectedSortable">
+        <section class="col-lg-12 connectedSortable">
           <!-- Custom tabs (Charts with tabs)-->
+          <form action="{{ route('updatenumber',$numbers[0]->id) }}" method="post">
+            @csrf
+            <div class="row">
+              {{-- @foreach ($numbers as $number) --}}
+              <div class="col-6">
+                <label class="control-label" for="">YOUTH EMPOWERED</label>
+                <input type="number" value="{{ $numbers[0]->youth }}" class="form-control" name="youth" id="">
+              </div>
+              <div class="col-6">
+                <label class="control-label" for="">ZONGO COMMUNITIES</label>
+                <input type="number" value="{{ $numbers[0]->zongos }}" class="form-control" name="zongos" id="">
+              </div>
+              <div class="col-6">
+                <label class="control-label" for="">PROJECTS</label>
+                <input type="number" value="{{ $numbers[0]->projects }}" class="form-control" name="projects" id="">
+              </div>
+              <div class="col-6">
+                <label class="control-label" for="">SUCCESS TARGETED (%)</label>
+                <input type="decimal" value="{{ $numbers[0]->success }}" class="form-control" name="success" id="">
+              </div>
+              <br>
+              <div class="col-12">
+                <br>
+                {{-- <label class="control-label" for="">Update</label> --}}
+                <button type="submit" class="btn btn-primary">Update All</button>
+              </div>
+              {{-- @endforeach --}}
+            </div>
+          </form>
 
         </section>
         <!-- /.Left col -->
@@ -130,4 +159,4 @@
 } );
 </script>
     
-@endsection
+@endsection 

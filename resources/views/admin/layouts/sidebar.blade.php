@@ -15,8 +15,11 @@
         <a href="#" class="d-block">{{ ucfirst(Auth()->user()->name) }}</a>
       </div>
       <div class="image">
-        <a class="small btn btn-primary" href="{{ route('logout') }}">Logout</a>
+        <a class="btn btn-primary" href="{{ route('adminlogout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
       </div>
+      <form id="logout-form" action="{{ route('adminlogout') }}" method="POST" style="display: none;">
+        @csrf
+    </form>
     </div>
 
     <!-- Sidebar Menu -->
@@ -32,7 +35,7 @@
             </li>
             <li class="nav-item has-treeview">
               <a href="" class="nav-link">
-                <i class="nav-icon fas fa-chart-pie"></i>
+                <i class="nav-icon fas fa-lock"></i>
                 <p>
                   Administrator
                   <i class="right fas fa-angle-left"></i>
@@ -40,22 +43,46 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="" class="nav-link">
+                  <a href="{{ route('registration') }}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Add Admin</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="" class="nav-link">
+                  <a href="{{ route('viewadmin') }}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>View All Admin</p>
                   </a>
                 </li>
               </ul>
             </li>
+            <li class="nav-item">
+              <a href="{{ route('showallnews') }}" class="nav-link">
+                <i class="fa fa-sticky-note nav-icon"></i>
+                <p>Posts</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('indexcategory') }}" class="nav-link">
+                <i class="fa fa-list-alt nav-icon"></i>
+                <p>Categories</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('indextag') }}" class="nav-link">
+                <i class="fa fa-tag nav-icon"></i>
+                <p>Tags</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('showgallery') }}" class="nav-link">
+                <i class="fa fa fa-camera nav-icon"></i>
+                <p>Gallery</p>
+              </a>
+            </li>
             <li class="nav-item has-treeview">
               <a href="" class="nav-link">
-                <i class="nav-icon fas fa-chart-pie"></i>
+                <i class="nav-icon fas fa-project-diagram"></i>
                 <p>
                   Projects
                   <i class="right fas fa-angle-left"></i>
@@ -77,7 +104,7 @@
               </ul>
 
             </li>
-            <li class="nav-item has-treeview">
+            {{-- <li class="nav-item has-treeview">
               <a href="" class="nav-link">
                 <i class="nav-icon fas fa-chart-pie"></i>
                 <p>
@@ -90,6 +117,29 @@
                   <a href="{{ route('addmaterial') }}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Add Project Materials</p>
+                  </a>
+                </li>
+              </ul>
+            </li> --}}
+            <li class="nav-item">
+              <a href="{{ route('viewstaff') }}" class="nav-link">
+                <i class="nav-icon fa fa-tasks"></i>
+                <p>Staff</p>
+              </a>
+            </li>
+            <li class="nav-item has-treeview">
+              <a href="" class="nav-link">
+                <i class="nav-icon fa fa-graduation-cap"></i>
+                <p>
+                  Registered students
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{ route('registered') }}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>All Registration</p>
                   </a>
                 </li>
               </ul>
@@ -111,27 +161,27 @@
                 </li>
               </ul>
             </li>
-            {{-- @php
-              use \App\Model\User\Contact;
-                $countmessage = Contact::all();
+            @php
+                use \App\Model\User\Contact;
+                $countmessage = Contact::where('read','new')->get();
                 $countmessages = count($countmessage);
-            @endphp --}}
+            @endphp
             <li class="nav-item">
-              <a href="" class="nav-link">
+              <a href="{{ route('viewcontact') }}" class="nav-link">
                 <i class="far fa-envelope nav-icon"></i>
                 <p>Message
-                  {{-- @if ($countmessages>0) --}}
+                  @if ($countmessages>0)
                   <span class="right badge badge-danger">New</span>
-                  {{-- @else --}}
-                  {{-- <span class="right badge badge-danger"></span> --}}
-                  {{-- @endif --}}
+                  @else
+                  <span class="right badge badge-danger"></span>
+                  @endif
                   
                 </p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="" class="nav-link">
-                <i class="far fa-envelope nav-icon"></i>
+              <a href="{{ route('showsubscribe') }}" class="nav-link">
+                <i class="fa fa-users nav-icon"></i>
                 <p>Subscriber</p>
               </a>
             </li>

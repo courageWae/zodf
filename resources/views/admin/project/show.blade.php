@@ -44,23 +44,24 @@
                                 <tr>
                                     <td>{{$role->id}}</td>
                                     <td>{{$role->name}}</td>
-                                    <td><a href=""><span class="fas fa-edit"></span></a></td>
+                                    <td><a href="{{ route('showproject',$role->id) }}"><span class="fas fa-edit"></span></a></td>
                                     <td>
-                                        <form method="POST" id="delete-form-{{ $role->id }}" action=""
+                                        <form method="POST" id="delete-form-{{ $role->id }}" action="{{ route('destroyproject',$role->id) }}"
                                             style="display:none">
                                             {{ csrf_field() }}
                                             {{ method_field('DELETE') }}
                                         </form>
 
-                                        <a href="" onclick="
-                      if(confirm('Are you sure you want to delete this?'))
-                      {
-                          event.preventDefault();
-                          document.getElementById('delete-form-{{ $role->id }}').submit();
-                      }else
-                      {
-                          event.preventDefault();
-                      }"><span class="fas fa-trash-alt"></span>
+                                        <a href="{{ route('destroyproject',$role->id) }}" onclick="
+                                        if(confirm('Are you sure you want to delete this?'))
+                                        {
+                                            event.preventDefault();
+                                            document.getElementById('delete-form-{{ $role->id }}').submit();
+                                        }else
+                                        {
+                                            event.preventDefault();
+                                        }">
+                                        <span class="fas fa-trash-alt"></span>
                                         </a>
                                     </td>
                                 </tr>

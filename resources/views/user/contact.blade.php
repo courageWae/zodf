@@ -1,37 +1,11 @@
-<!doctype html>
-<html class="no-js" lang="zxx">
+@extends('user.layouts.app')
 
-<!-- Mirrored from ecologytheme.com/theme/eduread/contact.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 23 May 2020 05:32:58 GMT -->
-@include('user.layouts.head')
+@section('title', 'Contact')
 
-<body class="contact">
-<!-- Preloader -->
-<div id="preloader">
-	<div id="status">&nbsp;</div>
-</div>
-<header id="header">
-    
-	@include('user.layouts.topnav')
+@section('page', 'contact')
 
-	<div class="header-body">
-		@include('user.layouts.nav')
-		
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="intro-text ">
-						<h1>Contact Us</h1>
-						<p><span><a href="{{ route('index') }}">Home <i class='fa fa-angle-right'></i></a></span> <span class="b-active">Contact</span></p>
-					</div>
-				</div>
-			</div><!-- /.row -->
-		</div><!-- /.container -->
-	</div>
-</header>
-	<!--  End header section-->
-
-
-<!-- Contact Area section -->
+@section('main')
+	<!-- Contact Area section -->
 <section class="contact-area-02">
 	<div class="container">
 		<div class="row">
@@ -46,21 +20,31 @@
                             <div class="single-address">
                                 <i class="fa fa-phone"></i>
                                 <h4>Phone</h4>
-                                <p>+7 (800) 123 45 69</p>
+								<p>+233 267 899 999</p>
+								<p>+233 266 392 998</p>
                             </div>
                         </div>  
-                        <div class="col-sm-12 col-md-6  single-address-box">
+                        <div class="col-sm-12 col-md-6 single-address-box">
                             <div class="single-address">
                                 <i class="fa fa-envelope"></i>
                                 <h4>Email</h4>
-                                <p>hello@education.com</p>
+                                <p>info@zodf.gov.gh</p>
                             </div>
                         </div> 
                         <div class="col-sm-12 col-md-12 single-address-box">
                             <div class="single-address">
                                 <i class="fa fa-map-marker"></i>
                                 <h4>Location:</h4>
-                                <p>3481 Melrose Place, Beverly Hills CA 90210, US</p>
+								<p>PO Box No 1627, Christianborg Castle, Dideibaa Street,</p>
+								<p>15, Osu - Accra, Ghana</p>
+                            </div>
+						</div> 
+						<div class="col-sm-12 col-md-12 single-address-box">
+                            <div class="single-address">
+                                <i class="fa fa-clock-o"></i>
+                                <h4>Working Hours:</h4>
+								<p>Monday-Friday: 8am to 6pm</p>
+								<p>Saturday: 9am to 12am</p>
                             </div>
 	                    </div> 
 	                	<div class="col-sm-12 single-address-box">
@@ -88,26 +72,28 @@
 					
 					<div id="contact">
 					<div id="message"></div>	                       
-                    <form method="post" action="http://ecologytheme.com/theme/eduread/contact.php" name="contactform" id="contactform">
+					<form method="post" action="{{ route('sendcontact') }}" name="contactform">
+						@csrf
+						<input type="hidden" name="read" value="new">
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Name" name="name" id="name">
+                                    <input type="text" class="form-control" placeholder="Name" name="name">
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <input type="email" class="form-control" placeholder="Email" name="email" id="email">
+                                    <input type="email" class="form-control" placeholder="Email" name="email">
                                 </div>
                             </div>
                             <div class="col-sm-12">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Subject" name="subject" id="subject">
+                                    <input type="text" class="form-control" placeholder="Subject" name="subject">
                                 </div>
                             </div>	
                             <div class="col-sm-12">
                             	<div class="form-group">
-                                    <textarea class="form-control" rows="6" placeholder="Message" name="comments" id="comments"></textarea>
+                                    <textarea class="form-control" rows="6" placeholder="Message" name="message"></textarea>
                                 </div>
                             </div>	
                             <div class="col-sm-12">                                    
@@ -127,12 +113,9 @@
 </section>
 <!-- ./ End Contact Area section -->
 
+@endsection
 
-<!-- Footer Area section -->
-@include('user.layouts.footer')
-<!-- ./ End Footer Area -->
 
-    @include('user.layouts.script')
-</body>
 
-</html>
+
+

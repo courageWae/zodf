@@ -1,4 +1,4 @@
-@extends('broker.app')
+@extends('admin.app')
 
 @section('main')
 
@@ -37,42 +37,31 @@
     
     <div class="card-body">
       <div class="row">
-        <div class="col-4">
+        <div class="col-6">
           <div class="form-group">
             <label for="exampleInputEmail1">Customer Name</label>
-          <input type="text" class="form-control" name="date" value="{{ $messages->name }}" disabled>
+          <input type="text" class="form-control" name="date" value="{{ $message->name }}" disabled>
           </div>
         </div>
-        <div class="col-4">
+        <div class="col-6">
           <div class="form-group">
             <label for="exampleInputEmail1">Email</label>
-            <input type="text" value="{{ $messages->email }}" class="form-control" disabled>
+            <input type="text" value="{{ $message->email }}" class="form-control" disabled>
           </div>
         </div>
-        <div class="col-4">
-          <div class="form-group">
-            <label for="exampleInputEmail1">Phone Number</label>
-            <input type="text" value="{{ $messages->phone }}" class="form-control" disabled>
-          </div>
-        </div>
-      </div>
-      <div class="row">
         <div class="col-12">
           <div class="form-group">
             <label for="exampleInputEmail1">Subject</label>
-            <input type="text" value="{{ $messages->topic }}" class="form-control" disabled>
+            <input type="text" value="{{ $message->subject }}" class="form-control" disabled>
           </div>
         </div>
-      </div>
       
-      <div class="row">
         <div class="col-12">
           <div class="form-group">
             <label for="exampleInputEmail1">Messages</label>
-            <textarea name="" class="form-control" id="" cols="30" rows="10" disabled>{{ $messages->message }}</textarea>
+            <textarea name="" class="form-control" id="" cols="30" rows="10" disabled>{{ $message->message }}</textarea>
           </div>
         </div>
-      </div>
     </div>
   </div>
 

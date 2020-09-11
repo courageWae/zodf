@@ -1,30 +1,10 @@
-<!doctype html>
-<html class="no-js" lang="zxx">
+@extends('user.layouts.app')
 
-@include('user.layouts.head')
-<body class="event-01">
-<!-- Preloader -->
-<div id="preloader">
-	<div id="status">&nbsp;</div>
-</div>
-<header id="header">
-	@include('user.layouts.topnav')
+@section('title', 'Projects')
 
-	<div class="header-body">
-		@include('user.layouts.nav')
-		
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="intro-text ">
-						<h1>List Of Projects</h1>
-						<p><span><a href="{{ route('index') }}">Home <i class='fa fa-angle-right'></i></a></span> <span class="b-active">List Of Projects</span></p>
-					</div>
-				</div>
-			</div><!-- /.row -->
-		</div><!-- /.container -->
-	</div>
-</header>
+@section('page', 'event-01')
+
+@section('main')
 	<!--  End header section-->
 
 
@@ -59,8 +39,7 @@
 
 							<p>{{ \Illuminate\Support\Str::limit($project->description, 200) }}</p>
 
-							<a class="event-btn" href="{{ route('projectdetail', $project->id) }}">Read More<i class="fa fa-long-arrow-right events-btn-icon"></i></a>
-						</div>
+							<a class="btn btn-primary text-center" href="{{ route('projectdetail', $project->id) }}">Read More <i class="fa fa-long-arrow-right events-btn-icon"></i></a>  <a href="{{ route('projectregister', $project->id) }}" class="btn btn-primary price-btn">Register For Project <i class="fa fa-long-arrow-right events-btn-icon"></i></a>						</div>
 					</div>
 				</div>	
 			</div>
@@ -69,7 +48,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="event-bottom-btn">
-					<a href="#" class="view-more-item">view all events</a>
+					{{ $projects->links() }}
 				</div>
 			</div>
 		</div>
@@ -80,10 +59,4 @@
 
 
 <!-- Footer Area section -->
-@include('user.layouts.footer')
-<!-- ./ End Footer Area-->
-    @include('user.layouts.script')
-</body>
-
-<!-- Mirrored from ecologytheme.com/theme/eduread/event-list.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 23 May 2020 05:32:38 GMT -->
-</html>
+@endsection

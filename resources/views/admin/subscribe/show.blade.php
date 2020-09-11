@@ -1,4 +1,4 @@
-@extends('broker.app')
+@extends('admin.app')
 
 @section('main')
 
@@ -45,7 +45,7 @@
                         </thead>
                         <tbody>
 
-                            @foreach ($subscribers as $subscriber)
+                            @foreach ($subscribes as $subscriber)
                             <tr>
                                 <td>{{$subscriber->id}}</td>
                                 <td>{{$subscriber->email}}</td>
@@ -79,8 +79,3 @@
 
 
 @endsection
-
-
-# Handle Authorization Header
-RewriteCond %{SERVER_PORT} 80
-RewriteRule ^(.*)$ https://www.icompare.itechnologieslimited.com/$1 [R,L]
